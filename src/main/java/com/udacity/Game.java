@@ -149,9 +149,33 @@ public class Game {
      * @return String indicating the outcome of the game: "X wins" or "O wins" or "Tie" or "None"
      */
     public String checkGameWinner(char [][]grid){
-        String result = "None";
-        //Student code goes here ...
-        return result;
+        String result = "tie";
+        for(int i = 0; i < 3; i++){
+            //horizontal win
+            if(grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2] && grid[i][0] != '-'){
+                result = Character.toString(grid[i][0]);
+            }
+            //vertical win
+            if(grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i] && grid[0][i] != '-'){
+                result = Character.toString(grid[0][i]);
+            }
+        }
+        //diagonal win
+        if(grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[1][1] != '-'){
+            result = Character.toString(grid[0][0]);
+        }
+        if(grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[1][1] != '-'){
+            result = Character.toString(grid[2][0]);
+        }
+        if(result.equals("tie")){
+            for(int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    if(grid[i][j] == '-') return "none";
+                }
+            }
+            return  result;
+        }
+        return result + " wins";
     }
 
     /**
